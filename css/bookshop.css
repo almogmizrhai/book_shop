@@ -6,3 +6,59 @@ body{
     background-color: antiquewhite;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+header{
+    display: flex;
+    background-color: lightpink;
+    justify-content: center;
+    align-items: flex-start;
+    height: 5vh;
+    margin-block-end: 2rem;
+}
+
+header h1{
+   margin: 0;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    border: 5px solid black;
+}
+
+thead th{ 
+    background-color: lightslategray;
+    text-align: center;
+}
+
+th, td{
+    border: 1px solid black;
+    padding: 12px 16px;
+    text-align: left;
+}
+
+button.bth{
+    padding: 6px 12px;
+    margin: 0 2px;
+    border: none;
+    color: aliceblue;
+}
+
+button.read{
+    background-color: lightskyblue;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+button.update{
+    background-color: lightsalmon;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+button.delete{
+    background-color: lightcoral;
+    border-radius: 12px;
+    cursor: pointer;
+}
