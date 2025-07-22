@@ -25,7 +25,7 @@ function renderTable(){
         <td>${book.price} </td>
         <td>
         <button class="btn read" >Read</button>
-        <button class="btn update" onclick="onUpdateBook()">Update</button>
+        <button class="btn update" onclick="onUpdateBook(event, '${book.id}')">Update</button>
         <button class="btn delete" onclick="onRemoveBook(event, '${book.id}')">Delete</button>
         </td>
         </tr>`
@@ -35,8 +35,10 @@ function renderTable(){
     document.querySelector('.book-table').innerHTML = strHtml
 }
 
-function onUpdateBook(){
-    console.log('update:')
+function onUpdateBook(ev, bookId){
+    updatePrice(bookId)
+
+    renderTable()
 }
 
 function onRemoveBook(ev, bookId){

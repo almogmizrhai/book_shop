@@ -19,6 +19,11 @@ function getBook(title, price){
 
 function removeBook(bookId){
     const idx = gBooks.find(book => book.id === bookId)
-    console.log(idx)
     gBooks.splice(idx,1)
+}
+
+function updatePrice(bookId){
+    const newPrice = +prompt('please enter the new price:')
+    const idx = gBooks.find(book => book.id === bookId)
+    idx.price = newPrice
 }
