@@ -35,15 +35,23 @@ function renderTable(){
     document.querySelector('.book-table').innerHTML = strHtml
 }
 
+function onRemoveBook(ev, bookId){
+    console.log(ev)
+    removeBook(bookId)
+
+    renderTable()
+}
+
 function onUpdateBook(ev, bookId){
     updatePrice(bookId)
 
     renderTable()
 }
 
-function onRemoveBook(ev, bookId){
-    console.log(ev)
-    removeBook(bookId)
+function onAddBook(){
+    const newBookTitle = prompt('please enter the name of the new book:')
+    const newBookPrice = +prompt('please enter the new price:')
+    addBook(newBookTitle,newBookPrice)
 
     renderTable()
 }

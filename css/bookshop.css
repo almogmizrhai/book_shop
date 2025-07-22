@@ -62,3 +62,9 @@ button.delete{
     border-radius: 12px;
     cursor: pointer;
 }
+
+button.add{
+    background-color: lightseagreen;
+    border-radius: 12px;
+    cursor: pointer; 
+}

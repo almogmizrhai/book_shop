@@ -27,3 +27,8 @@ function updatePrice(bookId){
     const idx = gBooks.find(book => book.id === bookId)
     idx.price = newPrice
 }
+
+function addBook(newBookTitle,newBookPrice){
+    const newBook= getBook(newBookTitle,newBookPrice)
+    gBooks.push(newBook)
+}
