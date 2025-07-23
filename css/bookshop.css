@@ -38,33 +38,54 @@ th, td{
     text-align: left;
 }
 
-button.bth{
+button.btn{
     padding: 6px 12px;
     margin: 0 2px;
     border: none;
     color: aliceblue;
+    border-radius: 12px;
+    cursor: pointer;
 }
 
 button.read{
     background-color: lightskyblue;
-    border-radius: 12px;
-    cursor: pointer;
 }
 
 button.update{
     background-color: lightsalmon;
-    border-radius: 12px;
-    cursor: pointer;
 }
 
 button.delete{
     background-color: lightcoral;
-    border-radius: 12px;
-    cursor: pointer;
 }
 
 button.add{
     background-color: lightseagreen;
-    border-radius: 12px;
-    cursor: pointer; 
+}
+
+.display{
+    display: none;
+    position: absolute;
+    left: 20%;
+    top: 20%;
+    overflow: auto;
+    background-color: lightpink;
+}
+
+.display-content{
+    background-color: lightpink;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    position: relative;
+    text-align: center;
+}
+
+button.close{
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 22px;
+    background-color: black;
 }

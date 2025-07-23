@@ -24,7 +24,7 @@ function renderTable(){
         <td>${book.title} </td>
         <td>${book.price} </td>
         <td>
-        <button class="btn read" >Read</button>
+        <button class="btn read" onclick="onReadBook('${book.id}')" >Read</button>
         <button class="btn update" onclick="onUpdateBook(event, '${book.id}')">Update</button>
         <button class="btn delete" onclick="onRemoveBook(event, '${book.id}')">Delete</button>
         </td>
@@ -36,7 +36,6 @@ function renderTable(){
 }
 
 function onRemoveBook(ev, bookId){
-    console.log(ev)
     removeBook(bookId)
 
     renderTable()
@@ -54,4 +53,17 @@ function onAddBook(){
     addBook(newBookTitle,newBookPrice)
 
     renderTable()
+}
+
+function onReadBook(bookId) {
+    const book = gBooks.find(book => book.id === bookId)
+    if (!book) return
+
+    document.getElementById('display-title').innerText = book.title
+    document.getElementById('display-price').innerText = 'Price: ' + book.price + '₪'
+    document.getElementById('display-book').style.display = 'block'
+}
+
+function onCloseDisplay() {
+    document.getElementById('display-book').style.display = 'none'
 }
