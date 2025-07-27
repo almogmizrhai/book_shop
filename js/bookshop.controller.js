@@ -40,12 +40,18 @@ function onRemoveBook(ev, bookId){
     removeBook(bookId)
 
     renderTable(gBooks)
+
+    const txt = 'Book Removed Successfully!'
+    showMsg(txt)
 }
 
 function onUpdateBook(ev, bookId){
     updatePrice(bookId)
 
     renderTable(gBooks)
+
+    const txt = 'Book Updated Successfully!'
+    showMsg(txt)
 }
 
 function onAddBook(){
@@ -54,6 +60,8 @@ function onAddBook(){
     addBook(newBookTitle,newBookPrice)
 
     renderTable(gBooks)
+    const txt = 'Book Added Successfully!'
+    showMsg(txt)
 }
 
 function onReadBook(bookId) {

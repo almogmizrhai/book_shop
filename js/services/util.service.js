@@ -17,3 +17,14 @@ function getRandomInt(min, max) {
 	const maxFloored = Math.floor(max)
 	return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled) // The maximum is exclusive and the minimum is inclusive
 }
+
+function showMsg(txt) {
+    var elMsg = document.querySelector('.user-msg')
+    elMsg.innerText = txt
+
+    elMsg.classList.add('show')
+
+    setTimeout(() => {
+        elMsg.classList.remove('show')
+    }, 2000)
+}
