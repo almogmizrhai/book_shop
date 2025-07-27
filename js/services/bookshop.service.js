@@ -3,11 +3,22 @@
 'use strict'
 
 
-const gBooks = [
-    getBook('The Adventures of Lori Ipsi',120),
-    getBook('World Atlas',300),
-    getBook('Zorba the Greek',87)
-]
+var gBooks = []
+
+const STORAGE_KEY = 'books'
+
+function createBooks(){
+    gBooks = loadFromStorage(STORAGE_KEY)
+
+    if(gBooks && gBooks.length > 0) return
+
+    gBooks = [
+        getBook('The Adventures of Lori Ipsi',120),
+        getBook('World Atlas',300),
+        getBook('Zorba the Greek',87)
+    ]
+    _saveBooks()
+}
 
 function getBook(title, price){
     return {
@@ -20,15 +31,22 @@ function getBook(title, price){
 function removeBook(bookId){
     const idx = gBooks.find(book => book.id === bookId)
     gBooks.splice(idx,1)
+    _saveBooks()
 }
 
 function updatePrice(bookId){
     const newPrice = +prompt('please enter the new price:')
     const idx = gBooks.find(book => book.id === bookId)
     idx.price = newPrice
+    _saveBooks()
 }
 
 function addBook(newBookTitle,newBookPrice){
     const newBook= getBook(newBookTitle,newBookPrice)
     gBooks.push(newBook)
+    _saveBooks()
+}
+
+function _saveBooks(){
+    saveToStorage(STORAGE_KEY, gBooks)
 }
