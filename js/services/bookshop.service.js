@@ -47,6 +47,13 @@ function addBook(newBookTitle,newBookPrice){
     _saveBooks()
 }
 
+function searchBook(searchValue){
+    const filterBook = gBooks.filter(book =>
+        book.title.toLowerCase().includes(searchValue.toLowerCase())
+    )
+    return filterBook
+}
+
 function _saveBooks(){
     saveToStorage(STORAGE_KEY, gBooks)
 }

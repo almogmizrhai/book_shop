@@ -5,10 +5,10 @@
 
 function onInit(){
     createBooks()
-    renderTable()
+    renderTable(gBooks)
 }
 
-function renderTable(){
+function renderTable(books){
     var strHtml = `
     <thead>
      <tr>
@@ -19,8 +19,8 @@ function renderTable(){
      </thead>
      <tbody>
      `
-    for(var i=0; i<gBooks.length; i++){
-        const book = gBooks[i]
+    for(var i=0; i<books.length; i++){
+        const book = books[i]
         strHtml += `<tr>
         <td>${book.title} </td>
         <td>${book.price} </td>
@@ -39,13 +39,13 @@ function renderTable(){
 function onRemoveBook(ev, bookId){
     removeBook(bookId)
 
-    renderTable()
+    renderTable(gBooks)
 }
 
 function onUpdateBook(ev, bookId){
     updatePrice(bookId)
 
-    renderTable()
+    renderTable(gBooks)
 }
 
 function onAddBook(){
@@ -53,7 +53,7 @@ function onAddBook(){
     const newBookPrice = +prompt('please enter the new price:')
     addBook(newBookTitle,newBookPrice)
 
-    renderTable()
+    renderTable(gBooks)
 }
 
 function onReadBook(bookId) {
@@ -67,4 +67,9 @@ function onReadBook(bookId) {
 
 function onCloseDisplay() {
     document.getElementById('display-book').style.display = 'none'
+}
+
+function onSearchBook(searchValue){
+    const bookTitle = searchBook(searchValue)
+    renderTable(bookTitle)
 }

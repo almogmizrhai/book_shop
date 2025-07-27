@@ -5,6 +5,7 @@
 body{
     background-color: antiquewhite;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
 }
 
 header{
@@ -88,4 +89,13 @@ button.close{
     top: 10px;
     font-size: 22px;
     background-color: black;
+}
+
+button.search{
+    color: black;
+}
+
+input{
+  margin: 0.4rem 0;
+  border-radius: 12px;
 }
