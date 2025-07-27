@@ -34,6 +34,19 @@ function renderTable(books){
     strHtml +='</tbody>'
 
     document.querySelector('.book-table').innerHTML = strHtml
+    renderStats()
+}
+
+function renderStats(){
+    const elTotalCheap = document.querySelector('.total-cheap')
+    const elTotalAverage = document.querySelector('.total-average')
+    const elTotalExpensive = document.querySelector('.total-expensive')
+
+    const total = getStats()
+
+    elTotalCheap.innerText ='Cheap:' + total.cheap
+    elTotalAverage.innerText ='Average:' + total.average
+    elTotalExpensive.innerText ='Expensive:' + total.expensive
 }
 
 function onRemoveBook(ev, bookId){
@@ -57,11 +70,17 @@ function onUpdateBook(ev, bookId){
 function onAddBook(){
     const newBookTitle = prompt('please enter the name of the new book:')
     const newBookPrice = +prompt('please enter the new price:')
-    addBook(newBookTitle,newBookPrice)
-
-    renderTable(gBooks)
-    const txt = 'Book Added Successfully!'
-    showMsg(txt)
+    if (!newBookTitle || !newBookTitle.trim() ||  isNaN(newBookPrice) || newBookPrice <= 0){
+        const txt = 'The information you entered is incorrect.'
+        showMsg(txt)
+        return
+    }else{
+        addBook(newBookTitle,newBookPrice)
+    
+        renderTable(gBooks)
+        const txt = 'Book Added Successfully!'
+        showMsg(txt)
+    }
 }
 
 function onReadBook(bookId) {

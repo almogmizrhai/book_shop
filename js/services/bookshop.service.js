@@ -57,3 +57,24 @@ function searchBook(searchValue){
 function _saveBooks(){
     saveToStorage(STORAGE_KEY, gBooks)
 }
+
+function getStats(){
+
+    var totalCheap = 0
+    var totalAverage = 0
+    var totalExpensive = 0
+
+    for(var i=0; i<gBooks.length; i++){
+        if(gBooks[i].price < 80) {
+            totalCheap ++
+        } else if(gBooks[i].price < 200){
+            totalAverage ++
+        }else{
+            totalExpensive ++
+        }
+    }
+
+    const total = {cheap: totalCheap, average: totalAverage ,expensive: totalExpensive}
+
+    return total
+}

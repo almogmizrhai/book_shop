@@ -20,7 +20,7 @@ function getRandomInt(min, max) {
 
 function showMsg(txt) {
     var elMsg = document.querySelector('.user-msg')
-    elMsg.innerText = txt
+    elMsg.innerHTML = txt
 
     elMsg.classList.add('show')
 

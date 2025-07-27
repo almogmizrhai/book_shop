@@ -11,20 +11,31 @@
         <h1 >Book Shop </h1>
     </header>
     <hr>
-    <input type="search" id="search-book" placeholder="Search..." oninput="onSearchBook(this.value)"/>
-    <div class="user-msg hidden" id="user-msg"></div>
-    <table class="book-table">
-    </table>
-    <div class="display" id="display-book">
-        <div class="display-content">
-            <button class="btn close" onclick="onCloseDisplay()">X</button>
-            <h2 id="display-title">Book Title</h2>
-            <p id="display-price">Price</p>
+    <div class="main-content" >
+        <input type="search" id="search-book" placeholder="Search..." oninput="onSearchBook(this.value)"/>
+        <div class="user-msg hidden" id="user-msg"></div>
+        <table class="book-table">
+        </table>
+        <div class="display" id="display-book">
+            <div class="display-content">
+                <button class="btn close" onclick="onCloseDisplay()">X</button>
+                <h2 id="display-title">Book Title</h2>
+                <p id="display-price">Price</p>
+            </div>
         </div>
+        <hr>
+        <button class="btn add" onclick="onAddBook()">Add</button>
+        <hr> 
     </div>
-    <hr>
-    <button class="btn add" onclick="onAddBook()">Add</button>
 
+    <footer class="book-data">
+        <p> Made By Almog </p> 
+        <section class="stats">
+            <span class="total-cheap"></span> 
+            <span class="total-average"></span> 
+            <span class="total-expensive"></span> 
+        </section> 
+    </footer>
 
     <script src="js/services/util.service.js"></script>
 

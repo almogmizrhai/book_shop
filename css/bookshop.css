@@ -6,19 +6,31 @@ body{
     background-color: antiquewhite;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-header{
+.main-content{
+    flex: 1;
+}
+
+header,footer{
     display: flex;
-    background-color: lightpink;
-    justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: space-between;
     height: 5vh;
-    margin-block-end: 2rem;
+    padding-inline: 1rem;
+    background-color: lightpink;
+}
+
+footer{
+    margin-top: auto;
 }
 
 header h1{
-   margin: 0;
+    margin-block-end: 2rem;
+    margin: 0;
 }
 
 .user-msg{
