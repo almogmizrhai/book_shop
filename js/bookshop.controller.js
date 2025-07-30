@@ -4,11 +4,12 @@
 
 
 function onInit(){
-    createBooks()
-    renderTable(gBooks)
+    renderTable()
 }
 
-function renderTable(books){
+function renderTable() {
+    const books = getBooks()
+
     var strHtml = `
     <thead>
      <tr>
@@ -18,22 +19,25 @@ function renderTable(books){
      </tr>
      </thead>
      <tbody>
-     `
-    for(var i=0; i<books.length; i++){
-        const book = books[i]
-        strHtml += `<tr>
-        <td>${book.title} </td>
-        <td>${book.price} </td>
-        <td>
-        <button class="btn read" onclick="onReadBook('${book.id}')" >Read</button>
-        <button class="btn update" onclick="onUpdateBook(event, '${book.id}')">Update</button>
-        <button class="btn delete" onclick="onRemoveBook(event, '${book.id}')">Delete</button>
-        </td>
-        </tr>`
-    }
-    strHtml +='</tbody>'
+    `
+    books.forEach(book => {
+        strHtml += `
+        <tr>
+            <td>${book.title}</td>
+            <td>${book.price}</td>
+            <td>
+                <button class="btn read" onclick="onReadBook('${book.id}')">Read</button>
+                <button class="btn update" onclick="onUpdateBook('${book.id}')">Update</button>
+                <button class="btn delete" onclick="onRemoveBook('${book.id}', '${book.title}')">Delete</button>
+            </td>
+        </tr>
+        `
+    })
+
+    strHtml += '</tbody>'
 
     document.querySelector('.book-table').innerHTML = strHtml
+    console.log(books)
     renderStats()
 }
 
@@ -49,19 +53,22 @@ function renderStats(){
     elTotalExpensive.innerText ='Expensive:' + total.expensive
 }
 
-function onRemoveBook(ev, bookId){
+function onRemoveBook(bookId, title){
+    console.log('id to remove:', bookId)
+    console.log(' title:', title)
+    
     removeBook(bookId)
 
-    renderTable(gBooks)
+    renderTable()
 
     const txt = 'Book Removed Successfully!'
     showMsg(txt)
 }
 
-function onUpdateBook(ev, bookId){
+function onUpdateBook( bookId){
     updatePrice(bookId)
 
-    renderTable(gBooks)
+    renderTable()
 
     const txt = 'Book Updated Successfully!'
     showMsg(txt)
@@ -77,7 +84,7 @@ function onAddBook(){
     }else{
         addBook(newBookTitle,newBookPrice)
     
-        renderTable(gBooks)
+        renderTable()
         const txt = 'Book Added Successfully!'
         showMsg(txt)
     }

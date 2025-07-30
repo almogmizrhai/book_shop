@@ -2,12 +2,19 @@
 
 'use strict'
 
-
 var gBooks = []
-
 const STORAGE_KEY = 'books'
+_createBooks()
 
-function createBooks(){
+
+
+function getBooks() {
+    
+    return gBooks
+}
+
+function _createBooks(){
+    
     gBooks = loadFromStorage(STORAGE_KEY)
 
     if(gBooks && gBooks.length > 0) return
@@ -29,7 +36,7 @@ function getBook(title, price){
 }
 
 function removeBook(bookId){
-    const idx = gBooks.find(book => book.id === bookId)
+    const idx = gBooks.findIndex(book => book.id === bookId)
     gBooks.splice(idx,1)
     _saveBooks()
 }

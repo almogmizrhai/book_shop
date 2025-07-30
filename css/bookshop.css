@@ -41,10 +41,6 @@ header h1{
     transition:opacity 0.5s ease-in-out;
 }
 
-.hidden{
-    display: none;
-}
-
 .user-msg.show{
     opacity: 1;
 }
