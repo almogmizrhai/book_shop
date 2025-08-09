@@ -89,22 +89,24 @@ button.add{
 }
 
 .display{
-    display: none;
     position: absolute;
     left: 20%;
     top: 20%;
     overflow: auto;
     background-color: lightpink;
-}
-
-.display-content{
-    background-color: lightpink;
     margin: 10% auto;
     padding: 20px;
     border-radius: 10px;
     width: 300px;
-    position: relative;
     text-align: center;
+}
+
+.display-book {
+  display: none;
+}
+
+.show {
+  display: block;
 }
 
 button.close{
@@ -113,6 +115,7 @@ button.close{
     top: 10px;
     font-size: 22px;
     background-color: black;
+    border-radius: 5px;
 }
 
 button.search{

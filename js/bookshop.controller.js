@@ -4,10 +4,10 @@
 
 
 function onInit(){
-    renderTable()
+    renderBook()
 }
 
-function renderTable() {
+function renderBook() {
     const books = getBooks()
 
     var strHtml = `
@@ -28,7 +28,7 @@ function renderTable() {
             <td>
                 <button class="btn read" onclick="onReadBook('${book.id}')">Read</button>
                 <button class="btn update" onclick="onUpdateBook('${book.id}')">Update</button>
-                <button class="btn delete" onclick="onRemoveBook('${book.id}', '${book.title}')">Delete</button>
+                <button class="btn delete" onclick="onRemoveBook('${book.id}')">Delete</button>
             </td>
         </tr>
         `
@@ -40,6 +40,7 @@ function renderTable() {
     console.log(books)
     renderStats()
 }
+ 
 
 function renderStats(){
     const elTotalCheap = document.querySelector('.total-cheap')
@@ -53,23 +54,17 @@ function renderStats(){
     elTotalExpensive.innerText ='Expensive:' + total.expensive
 }
 
-function onRemoveBook(bookId, title){
-    console.log('id to remove:', bookId)
-    console.log(' title:', title)
-    
+function onRemoveBook(bookId){
     removeBook(bookId)
-
-    renderTable()
-
+    renderBook()
     const txt = 'Book Removed Successfully!'
     showMsg(txt)
 }
 
 function onUpdateBook( bookId){
-    updatePrice(bookId)
-
-    renderTable()
-
+    const newPrice = +prompt('please enter the new price:')
+    updatePrice(bookId, newPrice)
+    renderBook()
     const txt = 'Book Updated Successfully!'
     showMsg(txt)
 }
@@ -84,26 +79,27 @@ function onAddBook(){
     }else{
         addBook(newBookTitle,newBookPrice)
     
-        renderTable()
+        renderBook()
         const txt = 'Book Added Successfully!'
         showMsg(txt)
     }
 }
 
 function onReadBook(bookId) {
-    const book = gBooks.find(book => book.id === bookId)
+    console.log('Reading book with ID:', bookId)
+    const book = readBook(bookId)
     if (!book) return
-
-    document.getElementById('display-title').innerText = book.title
-    document.getElementById('display-price').innerText = 'Price: ' + book.price + '₪'
-    document.getElementById('display-book').style.display = 'block'
+    
+    document.querySelector('.display-title').innerText = book.title
+    document.querySelector('.display-price').innerText = 'Price: ' + book.price + '₪'
+    document.querySelector('.display-book').classList.add('show')
 }
 
 function onCloseDisplay() {
-    document.getElementById('display-book').style.display = 'none'
+    document.querySelector('.display-book').classList.remove('show')
 }
 
 function onSearchBook(searchValue){
-    const bookTitle = searchBook(searchValue)
-    renderTable(bookTitle)
+    searchBook(searchValue)
+    renderBook()
 }

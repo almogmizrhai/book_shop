@@ -6,10 +6,7 @@ var gBooks = []
 const STORAGE_KEY = 'books'
 _createBooks()
 
-
-
-function getBooks() {
-    
+function getBooks() { 
     return gBooks
 }
 
@@ -20,14 +17,14 @@ function _createBooks(){
     if(gBooks && gBooks.length > 0) return
 
     gBooks = [
-        getBook('The Adventures of Lori Ipsi',120),
-        getBook('World Atlas',300),
-        getBook('Zorba the Greek',87)
+        _getBook('The Adventures of Lori Ipsi',120),
+        _getBook('World Atlas',300),
+        _getBook('Zorba the Greek',87)
     ]
     _saveBooks()
 }
 
-function getBook(title, price){
+function _getBook(title, price){
     return {
         id: makeId(),
         title ,
@@ -37,51 +34,57 @@ function getBook(title, price){
 
 function removeBook(bookId){
     const idx = gBooks.findIndex(book => book.id === bookId)
+    if (idx === -1) return
     gBooks.splice(idx,1)
     _saveBooks()
 }
 
-function updatePrice(bookId){
-    const newPrice = +prompt('please enter the new price:')
+function updatePrice(bookId, newPrice){
     const idx = gBooks.find(book => book.id === bookId)
+    if (idx === -1) return
+    if (isNaN(newPrice) || newPrice <= 0) {
+        const txt = 'The price you entered is incorrect.'
+        showMsg(txt)
+        return
+    }
     idx.price = newPrice
     _saveBooks()
 }
 
-function addBook(newBookTitle,newBookPrice){
-    const newBook= getBook(newBookTitle,newBookPrice)
+function readBook(bookId) {
+    const book = gBooks.find(book => book.id === bookId)
+    return book 
+}
+
+function addBook(title,price){ 
+    const newBook= _getBook(title,price)
     gBooks.push(newBook)
     _saveBooks()
 }
 
-function searchBook(searchValue){
-    const filterBook = gBooks.filter(book =>
-        book.title.toLowerCase().includes(searchValue.toLowerCase())
-    )
-    return filterBook
+function searchBook(searchValue) {
+    const books = loadFromStorage(STORAGE_KEY)
+    if (!searchValue) {
+        gBooks = books
+    } else {
+        const regex = new RegExp(searchValue, 'i')
+        gBooks = books.filter(book => regex.test(book.title))
+    }
 }
 
 function _saveBooks(){
     saveToStorage(STORAGE_KEY, gBooks)
 }
 
-function getStats(){
-
-    var totalCheap = 0
-    var totalAverage = 0
-    var totalExpensive = 0
-
-    for(var i=0; i<gBooks.length; i++){
-        if(gBooks[i].price < 80) {
-            totalCheap ++
-        } else if(gBooks[i].price < 200){
-            totalAverage ++
-        }else{
-            totalExpensive ++
+function getStats() {
+    return gBooks.reduce((acc, book) => {
+        if (book.price < 80) {
+            acc.cheap++
+        } else if (book.price < 200) {
+            acc.average++
+        } else {
+            acc.expensive++
         }
-    }
-
-    const total = {cheap: totalCheap, average: totalAverage ,expensive: totalExpensive}
-
-    return total
+        return acc
+    }, { cheap: 0, average: 0, expensive: 0 }) 
 }
