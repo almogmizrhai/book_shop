@@ -7,40 +7,81 @@ function onInit(){
     renderBook()
 }
 
+function onSetDisplayType(displayType) {
+    gDisplayType = displayType
+    renderBook()
+}
+
 function renderBook() {
     const books = getBooks()
+    if (gDisplayType === 'table'){
+        var elCard = document.querySelector('.book-cards')
+        elCard.classList.add('hide')
+        var elTable = document.querySelector('.book-table')
+        elTable.classList.remove('hide')
 
-    var strHtml = `
+        const txt = 'Book Shown in Table!'
+        showMsg(txt)   
+        readBookInTable(books)
+    } 
+    else if (gDisplayType === 'cards'){
+        var elCard = document.querySelector('.book-cards')
+        elCard.classList.remove('hide')
+        var elTable = document.querySelector('.book-table')
+        elTable.classList.add('hide')
+
+        const txt = 'Book Shown in Cards!'
+        showMsg(txt)   
+        renderBookInCards(books)
+    }
+    renderStats()
+}
+ 
+function renderBookInCards(books) { 
+    let strHtml = ''
+    books.forEach(book => {
+        strHtml += `
+        <div class="book-card">
+        <h3 class="book-title">${book.title}</h3>
+        <p class="book-speed">The price is: <span class="price">${book.price}</span> ₪</p>
+        <div class="book-actions">
+        <button class="btn read" onclick="onReadBook('${book.id}')">Read</button>
+        <button class="btn update" onclick="onUpdateBook('${book.id}')">Update</button>
+        <button class="btn delete" onclick="onRemoveBook('${book.id}')">Delete</button>
+        </div>
+        </div>
+        `
+    })
+    document.querySelector('.book-cards').innerHTML = strHtml
+}
+
+function readBookInTable(books) {
+    let strHtml = `
     <thead>
-     <tr>
-        <th>Title</th>
-        <th>Price</th>
-        <th>Actions</th>
-     </tr>
-     </thead>
-     <tbody>
+    <tr>
+    <th>Title</th>
+    <th>Price</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
     `
     books.forEach(book => {
         strHtml += `
         <tr>
-            <td>${book.title}</td>
-            <td>${book.price}</td>
-            <td>
-                <button class="btn read" onclick="onReadBook('${book.id}')">Read</button>
-                <button class="btn update" onclick="onUpdateBook('${book.id}')">Update</button>
-                <button class="btn delete" onclick="onRemoveBook('${book.id}')">Delete</button>
-            </td>
+        <td>${book.title}</td>
+        <td>${book.price}</td>
+        <td>
+        <button class="btn read" onclick="onReadBook('${book.id}')">Read</button>
+        <button class="btn update" onclick="onUpdateBook('${book.id}')">Update</button>
+        <button class="btn delete" onclick="onRemoveBook('${book.id}')">Delete</button>
+        </td>
         </tr>
         `
     })
-
-    strHtml += '</tbody>'
-
+    strHtml += '</tbody>' 
     document.querySelector('.book-table').innerHTML = strHtml
-    console.log(books)
-    renderStats()
 }
- 
 
 function renderStats(){
     const elTotalCheap = document.querySelector('.total-cheap')
@@ -102,4 +143,17 @@ function onCloseDisplay() {
 function onSearchBook(searchValue){
     searchBook(searchValue)
     renderBook()
+}
+
+function onDisplayBooks() {
+    if (gDisplayType === 'table') {
+        gDisplayType = 'cards'
+        document.querySelector('.btn.btn-display').innerText = 'Display Books - Table'
+    } else if (gDisplayType === 'cards') {
+        gDisplayType = 'table'
+        document.querySelector('.btn.btn-display').innerText = 'Display Books - Cards'
+    }
+    renderBook()
+    const txt = `Books displayed in ${gDisplayType} format`
+    showMsg(txt)
 }

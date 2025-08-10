@@ -1,21 +1,28 @@
-*{
+* {
     box-sizing: border-box;
 }
 
-body{
-    background-color: antiquewhite;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-align: center;
-    min-height: 100vh;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f0e2;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
-.main-content{
+.main-content {
     flex: 1;
 }
 
-header,footer{
+.display-type {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+header, footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -24,92 +31,140 @@ header,footer{
     background-color: lightpink;
 }
 
-footer{
+footer {
     margin-top: auto;
 }
 
-header h1{
-    margin-block-end: 2rem;
+header h1 {
     margin: 0;
 }
 
-.user-msg{
+.user-msg {
     position: fixed;
     background-color: lightpink;
     border-radius: 10px;
     opacity: 0;
-    transition:opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 }
 
-.user-msg.show{
+.user-msg.show {
     opacity: 1;
 }
 
-table{
+.book-table {
+    background-color: white;
     width: 100%;
     border-collapse: collapse;
     margin-top: 2rem;
     border: 5px solid black;
 }
 
-thead th{ 
+thead th {
     background-color: lightslategray;
     text-align: center;
 }
 
-th, td{
+th, td {
     border: 1px solid black;
     padding: 12px 16px;
     text-align: left;
 }
 
-button.btn{
-    padding: 6px 12px;
-    margin: 0 2px;
-    border: none;
-    color: aliceblue;
+.book-container {
+    padding: 20px;
+    background-color: lightpink;
+    margin: 10px auto;
+}
+
+.book-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    background-color: white;
     border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    gap: 0.75em;
+    align-items: center;
+}
+
+.book-card {
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.book-card h3 {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.book-card p {
+    margin: 6px 0;
+    font-size: 1rem;
+    color: #666;
+}
+
+.book-card .actions {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+button {
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    color: white;
+    font-size: 0.9rem;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-button.read{
-    background-color: lightskyblue;
+button.read {
+    background-color: #61c8ff;
+}
+button.read:hover {
+    background-color: #4eb4e5;
 }
 
-button.update{
-    background-color: lightsalmon;
+button.update {
+    background-color: #ff9776;
+}
+button.update:hover {
+    background-color: #e67e5f;
 }
 
-button.delete{
-    background-color: lightcoral;
+button.delete {
+    background-color: #ff6b6b;
+}
+button.delete:hover {
+    background-color: #e05050;
 }
 
-button.add{
+button.add {
     background-color: lightseagreen;
 }
-
-.display{
-    position: absolute;
-    left: 20%;
-    top: 20%;
-    overflow: auto;
-    background-color: lightpink;
-    margin: 10% auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    text-align: center;
+button.add:hover {
+    background-color: #2e8b8b;
 }
 
-.display-book {
-  display: none;
+.btn-display {
+    background-color: lightseagreen;
+    color: aliceblue;
+    padding: 6px 12px;
+    border-radius: 12px;
+    margin-top: 1rem;
 }
 
-.show {
-  display: block;
-}
-
-button.close{
+button.close {
     position: absolute;
     right: 15px;
     top: 10px;
@@ -118,11 +173,34 @@ button.close{
     border-radius: 5px;
 }
 
-button.search{
+button.search {
     color: black;
 }
 
-input{
-  margin: 0.4rem 0;
-  border-radius: 12px;
+input {
+    margin: 0.4rem 0;
+    border-radius: 12px;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.book-title {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.book-price {
+    font-size: 1.2rem;
+    color: gray;
+}
+
+.book-actions {
+    display: flex;
+    justify-content: space-between;
 }

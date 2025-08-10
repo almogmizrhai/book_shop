@@ -4,6 +4,7 @@
 
 var gBooks = []
 const STORAGE_KEY = 'books'
+var gDisplayType = 'table'
 _createBooks()
 
 function getBooks() { 

@@ -12,22 +12,36 @@
     </header>
     <hr>
     <div class="main-content" >
+        <hr>
         <input type="search" id="search-book" placeholder="Search..." oninput="onSearchBook(this.value)"/>
         <div class="user-msg" id="user-msg"></div>
-        <table class="book-table">
-        </table>
-        <section class="book-cards">
+        <hr>
+        <div class="display-type">
+            <button class="btn btn-display" onclick="onSetDisplayType('table')">Table</button>
+            <button class="btn btn-display" onclick="onSetDisplayType('cards')">Cards</button>
+        </div>
 
-        </section>
-
-        <div class="display display-book">
-            <div >
-                <button class="btn-close" onclick="onCloseDisplay()">X</button>
-                <h2 class="display-title">Book Title</h2>
-                <p class="display-price">Price</p>
+        <div>
+            <div class="book-container">
+                <table class="book-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+                <div class="book-cards">
+                    
+                </div>
             </div>
         </div>
         <hr>
+
         <button class="btn add" onclick="onAddBook()">Add</button>
         <hr> 
     </div>
