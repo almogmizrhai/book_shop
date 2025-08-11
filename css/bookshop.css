@@ -52,11 +52,11 @@ header h1 {
 }
 
 .book-table {
-    background-color: white;
+    background-color: #f9f0e2;
     width: 100%;
     border-collapse: collapse;
     margin-top: 2rem;
-    border: 5px solid black;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 thead th {
@@ -79,7 +79,6 @@ th, td {
 .book-cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    background-color: white;
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -93,6 +92,7 @@ th, td {
     border: 2px solid black;
     border-radius: 12px;
     padding: 16px;
+    background-color: #f9f0e2;
 }
 
 .book-card:hover {
@@ -149,10 +149,10 @@ button.delete:hover {
     background-color: #e05050;
 }
 
-button.add {
+button.add, button.save, button.cancel {
     background-color: lightseagreen;
 }
-button.add:hover {
+button.add:hover, button.save:hover, button.cancel:hover {
     background-color: #2e8b8b;
 }
 
@@ -162,6 +162,9 @@ button.add:hover {
     padding: 6px 12px;
     border-radius: 12px;
     margin-top: 1rem;
+}
+.btn-display:hover {
+    background-color: #2e8b8b;
 }
 
 button.close {
@@ -182,10 +185,6 @@ input {
     border-radius: 12px;
 }
 
-.show {
-    display: block;
-}
-
 .hide {
     display: none;
 }
@@ -203,4 +202,55 @@ input {
 .book-actions {
     display: flex;
     justify-content: space-between;
+}
+
+.pop-up-book {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f0e2;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: visibility 0.3s, opacity 0.3s;
+}
+
+.add-book {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f0e2;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: visibility 0.3s, opacity 0.3s;
+}
+
+.pop-up-title{
+    padding: 15px;
+}
+
+.btn .close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 24px;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-around;
+}
+
+.label{
+    display: grid;
 }
